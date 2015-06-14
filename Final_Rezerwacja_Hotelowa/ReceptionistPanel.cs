@@ -26,20 +26,16 @@ namespace Final_Rezerwacja_Hotelowa
             InitializeComponent();
             CreateUsersTab();
             CreateRoomTab();
-
-            //room grid refresh
             //inicjalizacja refreschera na podany gridview
             R_Grid.Inicjalize(dataGridView1);
-            //pobranie danych pokoju
-            var rooms = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
-            //ustawienie grida jako edytowanego i jego aktualizacja
-            R_Grid.Set_Edited(rooms);
-            R_Grid.Set_Update();
-
-            //user grid refresh
             U_Grid.Inicjalize(dataGridView2);
-            var users = from c in dc.Klients select new { Imie = c.imie, Nazwisko = c.nazwisko, Login = c.login, Adres=c.adres_zamieszkania };
-            U_Grid.Set_Edited(users);
+            //pobranie danych gridów
+            var query = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
+            var query2 = from c in dc.Klients select new { ID = c.id_klienta, Imie = c.imie, Nazwisko = c.nazwisko, Adres = c.adres_zamieszkania };
+            //ustawienie grida jako edytowanego i jego aktualizacja
+            R_Grid.Set_Edited(query);
+            R_Grid.Set_Update();
+            U_Grid.Set_Edited(query2);
             U_Grid.Set_Update();
         }
 
@@ -103,7 +99,6 @@ namespace Final_Rezerwacja_Hotelowa
             {
                 U_Grid.Set_Update();
             }
-            
         }
         
     }
