@@ -12,6 +12,7 @@ namespace Final_Rezerwacja_Hotelowa
 {
     public partial class ReserveFormular : Form
     {
+
         public ReserveFormular()
         {
             InitializeComponent();
