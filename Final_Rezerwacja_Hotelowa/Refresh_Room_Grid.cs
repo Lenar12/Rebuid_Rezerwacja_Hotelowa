@@ -12,7 +12,7 @@ namespace Final_Rezerwacja_Hotelowa
         private static Refresh_Room_Grid instance;
         private DataGridView tmp_grid;
         private Object data;
-        private bool state;
+        public bool state;
         private Refresh_Room_Grid(){}
         public static Refresh_Room_Grid Instance
         {

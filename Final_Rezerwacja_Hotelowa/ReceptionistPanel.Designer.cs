@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ChooseUser = new System.Windows.Forms.Button();
             this.NewUser = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@
             this.ReserveRoom = new System.Windows.Forms.Button();
             this.Logout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -110,10 +112,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(416, 193);
+            this.dataGridView1.Size = new System.Drawing.Size(416, 350);
             this.dataGridView1.TabIndex = 0;
             // 
             // Details
@@ -153,6 +155,12 @@
             this.tabControl1.Size = new System.Drawing.Size(748, 388);
             this.tabControl1.TabIndex = 10;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // ReceptionistPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,6 +191,7 @@
         private System.Windows.Forms.Button Details;
         private System.Windows.Forms.Button ReserveRoom;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }

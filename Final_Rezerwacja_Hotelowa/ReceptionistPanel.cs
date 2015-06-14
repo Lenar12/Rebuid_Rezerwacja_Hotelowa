@@ -15,13 +15,18 @@ namespace Final_Rezerwacja_Hotelowa
         //instancje zakładek , w których ukryta jest implementacja 
         UsersTab UTab;
         RoomTab RTab;
+        Refresh_Room_Grid R_Grid=Refresh_Room_Grid.Instance;
+        DataClassesDataContext dc= new DataClassesDataContext();
 
         public ReceptionistPanel()
         {
             InitializeComponent();
             CreateUsersTab();
             CreateRoomTab();
-            
+            R_Grid.Inicjalize(dataGridView1);
+            var query = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
+            R_Grid.Set_Edited(query);
+            R_Grid.Set_Update();
         }
 
         private void ReceptionistPanel_Load(object sender, EventArgs e)
@@ -72,6 +77,16 @@ namespace Final_Rezerwacja_Hotelowa
             LoginPanel next = new LoginPanel();
             next.Show();
             this.Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //MessageBox.Show(R_Grid.state.ToString());
+            if(R_Grid.Get_State())
+            {
+                R_Grid.Set_Update();
+                //MessageBox.Show("Update");
+            }
         }
         
     }
