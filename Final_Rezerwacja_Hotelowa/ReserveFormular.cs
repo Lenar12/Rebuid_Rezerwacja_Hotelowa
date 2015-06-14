@@ -12,6 +12,15 @@ namespace Final_Rezerwacja_Hotelowa
 {
     public partial class ReserveFormular : Form
     {
+        public struct ReserveData
+        {
+            public string Login;
+            public int RoomNum;
+            public DateTime Rezbeg;
+            public DateTime Rezend;
+        };
+        ReserveData RData;
+
         public ReserveFormular()
         {
             InitializeComponent();
@@ -45,7 +54,7 @@ namespace Final_Rezerwacja_Hotelowa
             // weryfikacja użytkownika
             if (this.CheckData())
             {
-
+                //MessageBox.Show(RData.Login);
                 Reserve.Enabled = true;
             }
 
@@ -54,7 +63,22 @@ namespace Final_Rezerwacja_Hotelowa
         public void GetData()
         {
             //pobieranie danych z textboxów
+            RData.Login = Login_box.Text;
+            RData.Rezbeg = datefrom.Value;
+            RData.Rezend = dateto.Value;
 
+            try
+            {
+                RData.RoomNum = Int32.Parse(numroom_box.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Number of room : FormatException" + numroom_box.Text);
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Number of room : OverflowException" +  numroom_box.Text);
+            }
 
         }
 
