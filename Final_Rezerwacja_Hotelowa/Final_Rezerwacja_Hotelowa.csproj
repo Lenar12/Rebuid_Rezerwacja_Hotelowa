@@ -86,7 +86,7 @@
     <Compile Include="ReceptionistPanel.Designer.cs">
       <DependentUpon>ReceptionistPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Refresh_Grid.cs" />
+    <Compile Include="Refresh_Room_Grid.cs" />
     <Compile Include="ReserveFormular.cs">
       <SubType>Form</SubType>
     </Compile>

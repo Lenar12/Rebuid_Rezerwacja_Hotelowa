@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ChooseUser = new System.Windows.Forms.Button();
             this.NewUser = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.Logout = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Details = new System.Windows.Forms.Button();
             this.ReserveRoom = new System.Windows.Forms.Button();
+            this.Logout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -45,7 +44,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ChooseUser);
@@ -107,19 +106,21 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(722, 193);
+            this.dataGridView1.Size = new System.Drawing.Size(416, 193);
             this.dataGridView1.TabIndex = 0;
             // 
             // Details
             // 
-            this.Details.Location = new System.Drawing.Point(246, 221);
+            this.Details.Location = new System.Drawing.Point(510, 60);
             this.Details.Name = "Details";
-            this.Details.Size = new System.Drawing.Size(175, 36);
+            this.Details.Size = new System.Drawing.Size(172, 36);
             this.Details.TabIndex = 8;
             this.Details.Text = "Więcej informacji";
             this.Details.UseVisualStyleBackColor = true;
@@ -127,13 +128,20 @@
             // 
             // ReserveRoom
             // 
-            this.ReserveRoom.Location = new System.Drawing.Point(39, 221);
+            this.ReserveRoom.Location = new System.Drawing.Point(510, 18);
             this.ReserveRoom.Name = "ReserveRoom";
             this.ReserveRoom.Size = new System.Drawing.Size(172, 36);
             this.ReserveRoom.TabIndex = 7;
             this.ReserveRoom.Text = "Rezerwuj pokoj";
             this.ReserveRoom.UseVisualStyleBackColor = true;
             this.ReserveRoom.Click += new System.EventHandler(this.ReserveRoom_Click);
+            // 
+            // Logout
+            // 
+            this.Logout.Location = new System.Drawing.Point(0, 0);
+            this.Logout.Name = "Logout";
+            this.Logout.Size = new System.Drawing.Size(75, 23);
+            this.Logout.TabIndex = 0;
             // 
             // tabControl1
             // 

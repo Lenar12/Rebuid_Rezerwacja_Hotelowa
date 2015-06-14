@@ -7,27 +7,20 @@ using System.Windows.Forms;
 
 namespace Final_Rezerwacja_Hotelowa
 {
-    interface Refresh_Interface
+    class Refresh_Room_Grid
     {
-        void Inicjalize(DataGridView grid);
-        void Set_Edited(Object obj);
-        void Set_Update();
-        bool Get_State();
-    }
-    class Refresh_Grid : Refresh_Interface
-    {
-        private static Refresh_Grid instance;
+        private static Refresh_Room_Grid instance;
         private DataGridView tmp_grid;
         private Object data;
         private bool state;
-        private Refresh_Grid(){}
-        public static Refresh_Grid Instance
+        private Refresh_Room_Grid(){}
+        public static Refresh_Room_Grid Instance
         {
             get
             {
                 if(instance==null)
                 {
-                    instance = new Refresh_Grid();
+                    instance = new Refresh_Room_Grid();
                 }
                 return instance;
             } 
@@ -43,8 +36,12 @@ namespace Final_Rezerwacja_Hotelowa
         }
         public void Set_Update()
         {
-            tmp_grid.DataSource = data;
-            state = false;
+            if (data != null)
+            {
+                tmp_grid.DataSource = data;
+                state = false;
+                data = null;
+            }
         }
         public bool Get_State()
         {
