@@ -7,31 +7,23 @@ using System.Windows.Forms;
 
 namespace Final_Rezerwacja_Hotelowa
 {
-    interface Refresher
+    class Refresh_User_Grid : Refresher
     {
-        //static Refresh_Room_Grid Instance;
-        void Inicjalize(DataGridView grid);
-        void Set_Edited(Object obj);
-        void Set_Update();
-        bool Get_State();
-    }
-    class Refresh_Room_Grid : Refresher
-    {
-        private static Refresh_Room_Grid instance;
+        private static Refresh_User_Grid instance;
         private DataGridView tmp_grid;
         private object data;
         public bool state;
-        private Refresh_Room_Grid(){}
-        public static Refresh_Room_Grid Instance
+        private Refresh_User_Grid() { }
+        public static Refresh_User_Grid Instance
         {
             get
             {
-                if(instance==null)
+                if (instance == null)
                 {
-                    instance = new Refresh_Room_Grid();
+                    instance = new Refresh_User_Grid();
                 }
                 return instance;
-            } 
+            }
         }
         public void Inicjalize(DataGridView grid)
         {
