@@ -17,6 +17,7 @@ namespace Final_Rezerwacja_Hotelowa
         RoomTab RTab;
         //tworzenie instancji refrteshera
         Refresh_Room_Grid R_Grid=Refresh_Room_Grid.Instance;
+        Refresh_User_Grid U_Grid = Refresh_User_Grid.Instance;
         //tworzenie połączenia z bazą danych
         DataClassesDataContext dc= new DataClassesDataContext();
 
@@ -27,11 +28,15 @@ namespace Final_Rezerwacja_Hotelowa
             CreateRoomTab();
             //inicjalizacja refreschera na podany gridview
             R_Grid.Inicjalize(dataGridView1);
-            //pobranie danych pokoju
+            U_Grid.Inicjalize(dataGridView2);
+            //pobranie danych gridów
             var query = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
+            var query2 = from c in dc.Klients select new { ID = c.id_klienta, Imie = c.imie, Nazwisko = c.nazwisko, Adres = c.adres_zamieszkania };
             //ustawienie grida jako edytowanego i jego aktualizacja
             R_Grid.Set_Edited(query);
             R_Grid.Set_Update();
+            U_Grid.Set_Edited(query2);
+            U_Grid.Set_Update();
         }
 
         private void ReceptionistPanel_Load(object sender, EventArgs e)
@@ -90,7 +95,10 @@ namespace Final_Rezerwacja_Hotelowa
             {
                 R_Grid.Set_Update();
             }
-            
+            if (U_Grid.Get_State())
+            {
+                U_Grid.Set_Update();
+            }
         }
         
     }
