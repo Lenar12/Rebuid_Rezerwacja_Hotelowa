@@ -21,6 +21,7 @@ namespace Final_Rezerwacja_Hotelowa
             InitializeComponent();
             CreateUsersTab();
             CreateRoomTab();
+            
         }
 
         private void ReceptionistPanel_Load(object sender, EventArgs e)
