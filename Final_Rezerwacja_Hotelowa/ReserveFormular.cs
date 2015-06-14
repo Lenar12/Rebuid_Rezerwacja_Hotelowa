@@ -15,6 +15,9 @@ namespace Final_Rezerwacja_Hotelowa
         public ReserveFormular()
         {
             InitializeComponent();
+            MakeAcc.Enabled = true;
+            Login_box.Enabled = false;
+            Reserve.Enabled = false;
         }
 
         private void MakeAcc_Click(object sender, EventArgs e)
@@ -40,13 +43,18 @@ namespace Final_Rezerwacja_Hotelowa
         private void Check_Click(object sender, EventArgs e)
         {
             // weryfikacja użytkownika
-            if (this.CheckData()) ;
+            if (this.CheckData())
+            {
+
+                Reserve.Enabled = true;
+            }
 
         }
 
         public void GetData()
         {
             //pobieranie danych z textboxów
+
 
         }
 
@@ -59,6 +67,18 @@ namespace Final_Rezerwacja_Hotelowa
         public void Sync()
         { // synchronizacja zmian z bazą danych
 
+        }
+
+        private void NewAcc_rbutton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (NewAcc_rbutton.Checked) MakeAcc.Enabled = true;
+            else MakeAcc.Enabled = false;
+        }
+
+        private void ExistAcc_rbutton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ExistAcc_rbutton.Checked) Login_box.Enabled = true;
+            else Login_box.Enabled = false;
         }
 
 
