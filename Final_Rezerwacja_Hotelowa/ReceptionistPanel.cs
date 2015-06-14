@@ -30,12 +30,12 @@ namespace Final_Rezerwacja_Hotelowa
             R_Grid.Inicjalize(dataGridView1);
             U_Grid.Inicjalize(dataGridView2);
             //pobranie danych gridów
-            var query = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
-            var query2 = from c in dc.Klients select new { ID = c.id_klienta, Imie = c.imie, Nazwisko = c.nazwisko, Adres = c.adres_zamieszkania };
+            var room = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
+            var user = from c in dc.Klients select new { ID = c.id_klienta, Imie = c.imie, Nazwisko = c.nazwisko, Login=c.login, Adres = c.adres_zamieszkania };
             //ustawienie grida jako edytowanego i jego aktualizacja
-            R_Grid.Set_Edited(query);
+            R_Grid.Set_Edited(room);
             R_Grid.Set_Update();
-            U_Grid.Set_Edited(query2);
+            U_Grid.Set_Edited(user);
             U_Grid.Set_Update();
         }
 
