@@ -23,10 +23,11 @@ namespace Final_Rezerwacja_Hotelowa
         //    }
         //}
 
-        public void OpenReservePanel()
+        public void OpenReservePanel(int id)
         {
             // otwiera formularz rezerwacji
             ReserveFormular next = new ReserveFormular();
+            next.user_id = id;
             next.Show();
         }
 

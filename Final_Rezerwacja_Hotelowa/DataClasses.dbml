@@ -11,14 +11,6 @@
       <Association Name="Klient_Rezerwacja" Member="Rezerwacjas" ThisKey="id_klienta" OtherKey="id_klienta" Type="Rezerwacja" />
     </Type>
   </Table>
-  <Table Name="dbo.Rezerwacja_Pokoj" Member="Rezerwacja_Pokojs">
-    <Type Name="Rezerwacja_Pokoj">
-      <Column Name="id_rezerwacji" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_pokoju" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Pokoj_Rezerwacja_Pokoj" Member="Pokoj" ThisKey="id_pokoju" OtherKey="id_pokoj" Type="Pokoj" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Rezerwacja_Rezerwacja_Pokoj" Member="Rezerwacja" ThisKey="id_rezerwacji" OtherKey="id_rezerwacji" Type="Rezerwacja" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Pokoj" Member="Pokojs">
     <Type Name="Pokoj">
       <Column Name="id_pokoj" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -49,9 +41,17 @@
       <Column Name="id_rezerwacji" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="id_klienta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="id_pracownika" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Rezerwacja_Rezerwacja_Pokoj" Member="Rezerwacja_Pokojs" ThisKey="id_rezerwacji" OtherKey="id_rezerwacji" Type="Rezerwacja_Pokoj" />
+      <Association Name="Rezerwacja_Rezerwacja_Pokoj" Member="Rezerwacja_Pokoj" ThisKey="id_rezerwacji" OtherKey="id_rezerwacji" Type="Rezerwacja_Pokoj" Cardinality="One" />
       <Association Name="Klient_Rezerwacja" Member="Klient" ThisKey="id_klienta" OtherKey="id_klienta" Type="Klient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Pracownicy_Rezerwacja" Member="Pracownicy" ThisKey="id_pracownika" OtherKey="id_pracownicy" Type="Pracownicy" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rezerwacja_Pokoj" Member="Rezerwacja_Pokojs">
+    <Type Name="Rezerwacja_Pokoj">
+      <Column Name="id_rezerwacji" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_pokoju" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Pokoj_Rezerwacja_Pokoj" Member="Pokoj" ThisKey="id_pokoju" OtherKey="id_pokoj" Type="Pokoj" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Rezerwacja_Rezerwacja_Pokoj" Member="Rezerwacja" ThisKey="id_rezerwacji" OtherKey="id_rezerwacji" Type="Rezerwacja" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

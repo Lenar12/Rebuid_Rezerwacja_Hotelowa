@@ -14,9 +14,11 @@ namespace Final_Rezerwacja_Hotelowa
         void Set_Edited(Object obj);
         void Set_Update();
         bool Get_State();
+        void Update_All();
     }
     class Refresh_Room_Grid : Refresher
     {
+        private DataClassesDataContext dc = new DataClassesDataContext();
         private static Refresh_Room_Grid instance;
         private DataGridView tmp_grid;
         private object data;
@@ -54,6 +56,11 @@ namespace Final_Rezerwacja_Hotelowa
         public bool Get_State()
         {
             return state;
+        }
+        public void Update_All()
+        {
+            var room = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
+            tmp_grid.DataSource = room;
         }
     }
 }

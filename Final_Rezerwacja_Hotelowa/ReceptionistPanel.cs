@@ -57,7 +57,7 @@ namespace Final_Rezerwacja_Hotelowa
         private void ReserveRoom_Click(object sender, EventArgs e)
         {
             // przycisk do rezerwowania pokoju
-            RTab.OpenReservePanel();
+            RTab.OpenReservePanel(1);
 
         }
 
@@ -105,6 +105,13 @@ namespace Final_Rezerwacja_Hotelowa
         {
             AdministratorPanel form = new AdministratorPanel();
             form.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var query=from c in dc.Rezerwacjas select c;
+           // var query = (from s in dc.Rezerwacja_Pokojs select s);
+            dataGridView1.DataSource = query;
         }
         
     }

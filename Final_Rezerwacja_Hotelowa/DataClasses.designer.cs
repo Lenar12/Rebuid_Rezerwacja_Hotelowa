@@ -42,6 +42,9 @@ namespace Final_Rezerwacja_Hotelowa
     partial void InsertRezerwacja(Rezerwacja instance);
     partial void UpdateRezerwacja(Rezerwacja instance);
     partial void DeleteRezerwacja(Rezerwacja instance);
+    partial void InsertRezerwacja_Pokoj(Rezerwacja_Pokoj instance);
+    partial void UpdateRezerwacja_Pokoj(Rezerwacja_Pokoj instance);
+    partial void DeleteRezerwacja_Pokoj(Rezerwacja_Pokoj instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -82,14 +85,6 @@ namespace Final_Rezerwacja_Hotelowa
 			}
 		}
 		
-		public System.Data.Linq.Table<Rezerwacja_Pokoj> Rezerwacja_Pokojs
-		{
-			get
-			{
-				return this.GetTable<Rezerwacja_Pokoj>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Pokoj> Pokojs
 		{
 			get
@@ -111,6 +106,14 @@ namespace Final_Rezerwacja_Hotelowa
 			get
 			{
 				return this.GetTable<Rezerwacja>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Rezerwacja_Pokoj> Rezerwacja_Pokojs
+		{
+			get
+			{
+				return this.GetTable<Rezerwacja_Pokoj>();
 			}
 		}
 	}
@@ -325,51 +328,6 @@ namespace Final_Rezerwacja_Hotelowa
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rezerwacja_Pokoj")]
-	public partial class Rezerwacja_Pokoj
-	{
-		
-		private int _id_rezerwacji;
-		
-		private int _id_pokoju;
-		
-		public Rezerwacja_Pokoj()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rezerwacji", DbType="Int NOT NULL")]
-		public int id_rezerwacji
-		{
-			get
-			{
-				return this._id_rezerwacji;
-			}
-			set
-			{
-				if ((this._id_rezerwacji != value))
-				{
-					this._id_rezerwacji = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pokoju", DbType="Int NOT NULL")]
-		public int id_pokoju
-		{
-			get
-			{
-				return this._id_pokoju;
-			}
-			set
-			{
-				if ((this._id_pokoju != value))
-				{
-					this._id_pokoju = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pokoj")]
 	public partial class Pokoj : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -391,6 +349,8 @@ namespace Final_Rezerwacja_Hotelowa
 		private System.Nullable<System.DateTime> _rezerwacja_do;
 		
 		private string _zdjecie;
+		
+		private EntitySet<Rezerwacja_Pokoj> _Rezerwacja_Pokojs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -416,6 +376,7 @@ namespace Final_Rezerwacja_Hotelowa
 		
 		public Pokoj()
 		{
+			this._Rezerwacja_Pokojs = new EntitySet<Rezerwacja_Pokoj>(new Action<Rezerwacja_Pokoj>(this.attach_Rezerwacja_Pokojs), new Action<Rezerwacja_Pokoj>(this.detach_Rezerwacja_Pokojs));
 			OnCreated();
 		}
 		
@@ -579,6 +540,19 @@ namespace Final_Rezerwacja_Hotelowa
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pokoj_Rezerwacja_Pokoj", Storage="_Rezerwacja_Pokojs", ThisKey="id_pokoj", OtherKey="id_pokoju")]
+		public EntitySet<Rezerwacja_Pokoj> Rezerwacja_Pokojs
+		{
+			get
+			{
+				return this._Rezerwacja_Pokojs;
+			}
+			set
+			{
+				this._Rezerwacja_Pokojs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -597,6 +571,18 @@ namespace Final_Rezerwacja_Hotelowa
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Rezerwacja_Pokojs(Rezerwacja_Pokoj entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pokoj = this;
+		}
+		
+		private void detach_Rezerwacja_Pokojs(Rezerwacja_Pokoj entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pokoj = null;
 		}
 	}
 	
@@ -846,6 +832,8 @@ namespace Final_Rezerwacja_Hotelowa
 		
 		private int _id_pracownika;
 		
+		private EntityRef<Rezerwacja_Pokoj> _Rezerwacja_Pokoj;
+		
 		private EntityRef<Klient> _Klient;
 		
 		private EntityRef<Pracownicy> _Pracownicy;
@@ -864,6 +852,7 @@ namespace Final_Rezerwacja_Hotelowa
 		
 		public Rezerwacja()
 		{
+			this._Rezerwacja_Pokoj = default(EntityRef<Rezerwacja_Pokoj>);
 			this._Klient = default(EntityRef<Klient>);
 			this._Pracownicy = default(EntityRef<Pracownicy>);
 			OnCreated();
@@ -937,6 +926,35 @@ namespace Final_Rezerwacja_Hotelowa
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Rezerwacja_Rezerwacja_Pokoj", Storage="_Rezerwacja_Pokoj", ThisKey="id_rezerwacji", OtherKey="id_rezerwacji", IsUnique=true, IsForeignKey=false)]
+		public Rezerwacja_Pokoj Rezerwacja_Pokoj
+		{
+			get
+			{
+				return this._Rezerwacja_Pokoj.Entity;
+			}
+			set
+			{
+				Rezerwacja_Pokoj previousValue = this._Rezerwacja_Pokoj.Entity;
+				if (((previousValue != value) 
+							|| (this._Rezerwacja_Pokoj.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Rezerwacja_Pokoj.Entity = null;
+						previousValue.Rezerwacja = null;
+					}
+					this._Rezerwacja_Pokoj.Entity = value;
+					if ((value != null))
+					{
+						value.Rezerwacja = this;
+					}
+					this.SendPropertyChanged("Rezerwacja_Pokoj");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Klient_Rezerwacja", Storage="_Klient", ThisKey="id_klienta", OtherKey="id_klienta", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Klient Klient
 		{
@@ -1001,6 +1019,174 @@ namespace Final_Rezerwacja_Hotelowa
 						this._id_pracownika = default(int);
 					}
 					this.SendPropertyChanged("Pracownicy");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rezerwacja_Pokoj")]
+	public partial class Rezerwacja_Pokoj : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_rezerwacji;
+		
+		private int _id_pokoju;
+		
+		private EntityRef<Pokoj> _Pokoj;
+		
+		private EntityRef<Rezerwacja> _Rezerwacja;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_rezerwacjiChanging(int value);
+    partial void Onid_rezerwacjiChanged();
+    partial void Onid_pokojuChanging(int value);
+    partial void Onid_pokojuChanged();
+    #endregion
+		
+		public Rezerwacja_Pokoj()
+		{
+			this._Pokoj = default(EntityRef<Pokoj>);
+			this._Rezerwacja = default(EntityRef<Rezerwacja>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rezerwacji", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_rezerwacji
+		{
+			get
+			{
+				return this._id_rezerwacji;
+			}
+			set
+			{
+				if ((this._id_rezerwacji != value))
+				{
+					if (this._Rezerwacja.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_rezerwacjiChanging(value);
+					this.SendPropertyChanging();
+					this._id_rezerwacji = value;
+					this.SendPropertyChanged("id_rezerwacji");
+					this.Onid_rezerwacjiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pokoju", DbType="Int NOT NULL")]
+		public int id_pokoju
+		{
+			get
+			{
+				return this._id_pokoju;
+			}
+			set
+			{
+				if ((this._id_pokoju != value))
+				{
+					if (this._Pokoj.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_pokojuChanging(value);
+					this.SendPropertyChanging();
+					this._id_pokoju = value;
+					this.SendPropertyChanged("id_pokoju");
+					this.Onid_pokojuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pokoj_Rezerwacja_Pokoj", Storage="_Pokoj", ThisKey="id_pokoju", OtherKey="id_pokoj", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Pokoj Pokoj
+		{
+			get
+			{
+				return this._Pokoj.Entity;
+			}
+			set
+			{
+				Pokoj previousValue = this._Pokoj.Entity;
+				if (((previousValue != value) 
+							|| (this._Pokoj.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Pokoj.Entity = null;
+						previousValue.Rezerwacja_Pokojs.Remove(this);
+					}
+					this._Pokoj.Entity = value;
+					if ((value != null))
+					{
+						value.Rezerwacja_Pokojs.Add(this);
+						this._id_pokoju = value.id_pokoj;
+					}
+					else
+					{
+						this._id_pokoju = default(int);
+					}
+					this.SendPropertyChanged("Pokoj");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Rezerwacja_Rezerwacja_Pokoj", Storage="_Rezerwacja", ThisKey="id_rezerwacji", OtherKey="id_rezerwacji", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Rezerwacja Rezerwacja
+		{
+			get
+			{
+				return this._Rezerwacja.Entity;
+			}
+			set
+			{
+				Rezerwacja previousValue = this._Rezerwacja.Entity;
+				if (((previousValue != value) 
+							|| (this._Rezerwacja.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Rezerwacja.Entity = null;
+						previousValue.Rezerwacja_Pokoj = null;
+					}
+					this._Rezerwacja.Entity = value;
+					if ((value != null))
+					{
+						value.Rezerwacja_Pokoj = this;
+						this._id_rezerwacji = value.id_rezerwacji;
+					}
+					else
+					{
+						this._id_rezerwacji = default(int);
+					}
+					this.SendPropertyChanged("Rezerwacja");
 				}
 			}
 		}

@@ -12,7 +12,17 @@ namespace Final_Rezerwacja_Hotelowa
 {
     public partial class ReserveFormular : Form
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
+        struct Form_Data
+        {
+            public System.DateTime data_od;
+            public System.DateTime data_do;
+            public string room_number;
+            public string client_login;
+        };
+        private Form_Data form_data=new Form_Data();
+        public int user_id;
+        private DataClassesDataContext dc = new DataClassesDataContext();
+        private Refresh_Room_Grid R_Grid = Refresh_Room_Grid.Instance;
         public ReserveFormular()
         {
             InitializeComponent();
@@ -38,15 +48,46 @@ namespace Final_Rezerwacja_Hotelowa
 
         private void Reserve_Click(object sender, EventArgs e)
         {
-            // rezerwacja pokoju
+            //tworzenie obiektów tabel, które będą aktualizowane
+            Rezerwacja rezerwacja=new Rezerwacja();
+            Rezerwacja_Pokoj rezerwacja1 = new Rezerwacja_Pokoj();
+            Pokoj room = new Pokoj();
 
+            rezerwacja.id_klienta = (from s in dc.Klients where s.login == Login_box.Text select new { s.id_klienta }).First().id_klienta;
+            rezerwacja.id_pracownika = user_id;
+            //wyjatek przeprowadzany podczas rejestracji do pustej bazy
+            try
+            {
+                rezerwacja.id_rezerwacji= (from s in dc.Rezerwacjas orderby s.id_rezerwacji descending select new { s.id_rezerwacji }).First().id_rezerwacji+1;
+                
+            }catch
+            {
+                rezerwacja.id_rezerwacji = 1;
+            }
+            //pokoj update
+            room = dc.Pokojs.Single(c => c.id_pokoj.ToString() == numroom_box.Text);
+            room.stan = true;
+            room.rezerwacja_do = datefrom.Value;
+            room.rezerwacja_od = dateto.Value;
+            //rezerwacja-pokoj update
+            rezerwacja1.id_pokoju = 204;
+            rezerwacja1.id_rezerwacji = 1;
+            //akceptacja zmian
+            dc.Rezerwacja_Pokojs.InsertOnSubmit(rezerwacja1);
+            dc.Rezerwacjas.InsertOnSubmit(rezerwacja);
+            dc.SubmitChanges();
+            //update room grida
+            R_Grid.Update_All();
         }
 
         public void GetData()
         {
+            form_data.client_login = Login_box.Text;
+            form_data.data_do = dateto.Value;
+            form_data.data_od = datefrom.Value;
+            //form_data.room_number = 
             //pobieranie danych z textboxów
-
-
+           
         }
 
         public bool CheckData()
@@ -59,21 +100,28 @@ namespace Final_Rezerwacja_Hotelowa
                 var room = (from c in dc.Pokojs where c.id_pokoj.ToString() == numroom_box.Text select new{c.zdjecie,c.id_pokoj}).First();
                 if (room.id_pokoj.ToString() == numroom_box.Text || pictureBox1.ImageLocation != room.zdjecie)
                 {
+                    if(room.zdjecie!=null)
                     pictureBox1.Image = Image.FromFile(room.zdjecie);
+                    label4.ForeColor = Color.Green;
+                    label4.Text = "\u221A";
                 }
                 }catch
                 {
                     //ustawia default image
                     pictureBox1.Image = pictureBox1.InitialImage;
+
+                    label4.ForeColor = Color.Red;
+                    label4.Text = "X";
+                   
                 }
                 try
                 {
                     //sprawdzenie poprawności loginu
                     var user = (from c in dc.Klients where c.login.ToString() == Login_box.Text select new { c.login }).First();
-                    if (Login_box.Text == user.login)
+                    if (Login_box.Text == user.login&&ExistAcc_rbutton.Checked)
                     {
                         Reserve.Enabled = true;
-                        Tick_label.ForeColor = Color.LightGreen;
+                        Tick_label.ForeColor = Color.Green;
                         Tick_label.Text = "\u221A";
                         return true;                       
                     }
@@ -83,6 +131,7 @@ namespace Final_Rezerwacja_Hotelowa
                     Tick_label.Text = "X";
                     return false;
                 }
+                Reserve.Enabled=false;
                 return false;
         }
 
