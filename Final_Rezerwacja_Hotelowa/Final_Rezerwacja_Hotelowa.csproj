@@ -67,12 +67,6 @@
     <Compile Include="AccFormular.Designer.cs">
       <DependentUpon>AccFormular.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdministratorPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdministratorPanel.Designer.cs">
-      <DependentUpon>AdministratorPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,9 +114,6 @@
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="AdministratorPanel.resx">
-      <DependentUpon>AdministratorPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginPanel.resx">
       <DependentUpon>LoginPanel.cs</DependentUpon>
     </EmbeddedResource>
