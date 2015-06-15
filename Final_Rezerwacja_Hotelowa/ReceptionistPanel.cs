@@ -100,6 +100,12 @@ namespace Final_Rezerwacja_Hotelowa
                 U_Grid.Set_Update();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AdministratorPanel form = new AdministratorPanel();
+            form.Show();
+        }
         
     }
 }

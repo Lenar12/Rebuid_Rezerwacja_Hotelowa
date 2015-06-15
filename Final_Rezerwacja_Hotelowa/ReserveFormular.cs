@@ -12,15 +12,7 @@ namespace Final_Rezerwacja_Hotelowa
 {
     public partial class ReserveFormular : Form
     {
-        public struct ReserveData
-        {
-            public string Login;
-            public int RoomNum;
-            public DateTime Rezbeg;
-            public DateTime Rezend;
-        };
-        ReserveData RData;
-
+        DataClassesDataContext dc = new DataClassesDataContext();
         public ReserveFormular()
         {
             InitializeComponent();
@@ -52,9 +44,9 @@ namespace Final_Rezerwacja_Hotelowa
         private void Check_Click(object sender, EventArgs e)
         {
             // weryfikacja użytkownika
-            if (this.CheckData())
+            if (this.CheckData("dfsfds"))
             {
-                //MessageBox.Show(RData.Login);
+
                 Reserve.Enabled = true;
             }
 
@@ -63,28 +55,28 @@ namespace Final_Rezerwacja_Hotelowa
         public void GetData()
         {
             //pobieranie danych z textboxów
-            RData.Login = Login_box.Text;
-            RData.Rezbeg = datefrom.Value;
-            RData.Rezend = dateto.Value;
 
-            try
-            {
-                RData.RoomNum = Int32.Parse(numroom_box.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Number of room : FormatException" + numroom_box.Text);
-            }
-            catch (OverflowException)
-            {
-                MessageBox.Show("Number of room : OverflowException" +  numroom_box.Text);
-            }
 
         }
 
-        public bool CheckData()
+        public bool CheckData(string login)
         {
-            //sprawdzenie czy dany użytkownik na którego chcemy zapisać rezerwację istnieje w systemie
+            //sprawdzenie czy dany użytkownik i pokój na którego chcemy zapisać rezerwację istnieje w systemie
+            
+                try
+                {
+                var room = (from c in dc.Pokojs where c.id_pokoj.ToString() == numroom_box.Text select new{c.zdjecie,c.id_pokoj}).First();
+                    if(room.id_pokoj.ToString()==numroom_box.Text||pictureBox1.ImageLocation!=room.zdjecie)
+                    {
+                        //pictureBox1.Image = room.zdjecie;
+                        //MessageBox.Show(numroom_box.Text);
+                    }
+                }catch
+                {
+                    //pictureBox1.ImageLocation = "D:\\Programy\\Rebuid_Rezerwacja_Hotelowa\\Final_Rezerwacja_Hotelowa\\Room_photodefault-image.png";
+                }
+               // MessageBox.Show(room[0].ToString());
+            
             return true;
         }
 
@@ -103,6 +95,11 @@ namespace Final_Rezerwacja_Hotelowa
         {
             if (ExistAcc_rbutton.Checked) Login_box.Enabled = true;
             else Login_box.Enabled = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CheckData("fgfd");
         }
 
 
