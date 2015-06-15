@@ -26,13 +26,13 @@ namespace Final_Rezerwacja_Hotelowa
 
         private void button1_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            //MessageBox.Show(folderBrowserDialog1.SelectedPath);
-            string i = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            Pokoj room= (from c in dc.Pokojs where c.id_pokoj.ToString()==i select c).First();
-            room.zdjecie = folderBrowserDialog1.SelectedPath.ToString();
-            dc.SubmitChanges();
-            refresher();
+            openFileDialog1.ShowDialog();
+            MessageBox.Show(openFileDialog1.FileName);
+            //string i = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            //Pokoj room= (from c in dc.Pokojs where c.id_pokoj.ToString()==i select c).First();
+            //room.zdjecie = SelectedPath.ToString();
+           // dc.SubmitChanges();
+            //refresher();
         }
     }
 }

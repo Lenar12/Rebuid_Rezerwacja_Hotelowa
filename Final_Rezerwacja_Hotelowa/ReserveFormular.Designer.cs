@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReserveFormular));
             this.Check = new System.Windows.Forms.Button();
             this.MakeAcc = new System.Windows.Forms.Button();
             this.NewAcc_rbutton = new System.Windows.Forms.RadioButton();
@@ -43,6 +45,9 @@
             this.datefrom = new System.Windows.Forms.DateTimePicker();
             this.dateto = new System.Windows.Forms.DateTimePicker();
             this.Tick_label = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Check
@@ -197,11 +202,28 @@
             this.Tick_label.Size = new System.Drawing.Size(46, 25);
             this.Tick_label.TabIndex = 41;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(418, 41);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(236, 198);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 47;
+            this.pictureBox1.TabStop = false;
+            // 
             // ReserveFormular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 385);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateto);
             this.Controls.Add(this.datefrom);
             this.Controls.Add(this.Tick_label);
@@ -221,6 +243,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReserveFormular";
             this.Text = "ReservationPanel";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +266,7 @@
         private System.Windows.Forms.DateTimePicker datefrom;
         private System.Windows.Forms.DateTimePicker dateto;
         private System.Windows.Forms.Label Tick_label;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
