@@ -63,7 +63,8 @@ namespace Final_Rezerwacja_Hotelowa
 
         private void Details_Click(object sender, EventArgs e)
         {
-            RTab.ManageRoom();
+            //MessageBox.Show(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value).ToString());
+            RTab.ManageRoom(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
             // przycisk do zobaczenia szegółów pokoju
         }
 

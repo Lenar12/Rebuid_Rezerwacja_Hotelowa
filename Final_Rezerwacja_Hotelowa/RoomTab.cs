@@ -37,10 +37,12 @@ namespace Final_Rezerwacja_Hotelowa
 
         }
 
-        public void ManageRoom()
+        public void ManageRoom(int selected_room)
         {
             // otwiera okno w ,którym będziemy mogli zobaczyć szczegóły pokoju
             RoomManager next = new RoomManager();
+            next.selected_room = selected_room;
+            next.ShowDetails(selected_room);
             next.Show();
         }
 
