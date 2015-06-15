@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReserveFormular));
-            this.Check = new System.Windows.Forms.Button();
             this.MakeAcc = new System.Windows.Forms.Button();
             this.NewAcc_rbutton = new System.Windows.Forms.RadioButton();
             this.ExistAcc_rbutton = new System.Windows.Forms.RadioButton();
@@ -49,17 +48,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Check
-            // 
-            this.Check.Location = new System.Drawing.Point(459, 242);
-            this.Check.Margin = new System.Windows.Forms.Padding(4);
-            this.Check.Name = "Check";
-            this.Check.Size = new System.Drawing.Size(112, 32);
-            this.Check.TabIndex = 40;
-            this.Check.Text = "Check";
-            this.Check.UseVisualStyleBackColor = true;
-            this.Check.Click += new System.EventHandler(this.Check_Click);
             // 
             // MakeAcc
             // 
@@ -196,22 +184,24 @@
             // 
             // Tick_label
             // 
-            this.Tick_label.Location = new System.Drawing.Point(579, 246);
+            this.Tick_label.Location = new System.Drawing.Point(452, 244);
             this.Tick_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Tick_label.Name = "Tick_label";
             this.Tick_label.Size = new System.Drawing.Size(46, 25);
             this.Tick_label.TabIndex = 41;
+            this.Tick_label.Text = "tick";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(418, 41);
+            this.pictureBox1.Location = new System.Drawing.Point(418, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(236, 198);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -227,7 +217,6 @@
             this.Controls.Add(this.dateto);
             this.Controls.Add(this.datefrom);
             this.Controls.Add(this.Tick_label);
-            this.Controls.Add(this.Check);
             this.Controls.Add(this.MakeAcc);
             this.Controls.Add(this.NewAcc_rbutton);
             this.Controls.Add(this.ExistAcc_rbutton);
@@ -251,7 +240,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Check;
         private System.Windows.Forms.Button MakeAcc;
         private System.Windows.Forms.RadioButton NewAcc_rbutton;
         private System.Windows.Forms.RadioButton ExistAcc_rbutton;

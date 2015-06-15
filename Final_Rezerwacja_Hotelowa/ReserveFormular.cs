@@ -19,6 +19,7 @@ namespace Final_Rezerwacja_Hotelowa
             MakeAcc.Enabled = true;
             Login_box.Enabled = false;
             Reserve.Enabled = false;
+            CheckData();
         }
 
         private void MakeAcc_Click(object sender, EventArgs e)
@@ -41,17 +42,6 @@ namespace Final_Rezerwacja_Hotelowa
 
         }
 
-        private void Check_Click(object sender, EventArgs e)
-        {
-            // weryfikacja użytkownika
-            if (this.CheckData("dfsfds"))
-            {
-
-                Reserve.Enabled = true;
-            }
-
-        }
-
         public void GetData()
         {
             //pobieranie danych z textboxów
@@ -59,25 +49,41 @@ namespace Final_Rezerwacja_Hotelowa
 
         }
 
-        public bool CheckData(string login)
+        public bool CheckData()
         {
             //sprawdzenie czy dany użytkownik i pokój na którego chcemy zapisać rezerwację istnieje w systemie
             
                 try
                 {
+                //jeżeli pokój posiada obraz to wyświetla jego podgląd
                 var room = (from c in dc.Pokojs where c.id_pokoj.ToString() == numroom_box.Text select new{c.zdjecie,c.id_pokoj}).First();
-                    if(room.id_pokoj.ToString()==numroom_box.Text||pictureBox1.ImageLocation!=room.zdjecie)
+                if (room.id_pokoj.ToString() == numroom_box.Text || pictureBox1.ImageLocation != room.zdjecie)
+                {
+                    pictureBox1.Image = Image.FromFile(room.zdjecie);
+                }
+                }catch
+                {
+                    //ustawia default image
+                    pictureBox1.Image = pictureBox1.InitialImage;
+                }
+                try
+                {
+                    //sprawdzenie poprawności loginu
+                    var user = (from c in dc.Klients where c.login.ToString() == Login_box.Text select new { c.login }).First();
+                    if (Login_box.Text == user.login)
                     {
-                        //pictureBox1.Image = room.zdjecie;
-                        //MessageBox.Show(numroom_box.Text);
+                        Reserve.Enabled = true;
+                        Tick_label.ForeColor = Color.LightGreen;
+                        Tick_label.Text = "\u221A";
+                        return true;                       
                     }
                 }catch
                 {
-                    //pictureBox1.ImageLocation = "D:\\Programy\\Rebuid_Rezerwacja_Hotelowa\\Final_Rezerwacja_Hotelowa\\Room_photodefault-image.png";
+                    Tick_label.ForeColor = Color.Red;
+                    Tick_label.Text = "X";
+                    return false;
                 }
-               // MessageBox.Show(room[0].ToString());
-            
-            return true;
+                return false;
         }
 
         public void Sync()
@@ -99,7 +105,12 @@ namespace Final_Rezerwacja_Hotelowa
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CheckData("fgfd");
+            CheckData();
+        }
+
+        private void Check_Click(object sender, EventArgs e)
+        {
+
         }
 
 
