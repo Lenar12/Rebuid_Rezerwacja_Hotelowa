@@ -50,8 +50,8 @@ namespace Final_Rezerwacja_Hotelowa
         }
         public void Update_All()
         {
-            var room = from c in dc.Pokojs select new { Numer = c.id_pokoj, Pojemnosc = c.pojemnosc, Stan = c.stan, Cena = c.cena_pokoju };
-            tmp_grid.DataSource = room;
+            var user = from c in dc.Klients select new { ID = c.id_klienta, Imie = c.imie, Nazwisko = c.nazwisko, Login = c.login, Adres = c.adres_zamieszkania };
+            tmp_grid.DataSource = user;
         }
     }
 }

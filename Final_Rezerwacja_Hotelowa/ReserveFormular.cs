@@ -78,6 +78,8 @@ namespace Final_Rezerwacja_Hotelowa
             dc.SubmitChanges();
             //update room grida
             Sync();
+            MessageBox.Show("Pokój "+room.id_pokoj.ToString()+" zarezerwowany przez użytkownika "+form_data.client_login );
+            this.Hide();
         }
 
         public void GetData()
@@ -95,8 +97,8 @@ namespace Final_Rezerwacja_Hotelowa
                 try
                 {
                 //jeżeli pokój posiada obraz to wyświetla jego podgląd
-                var room = (from c in dc.Pokojs where c.id_pokoj.ToString() == numroom_box.Text select new{c.zdjecie,c.id_pokoj}).First();
-                if (room.id_pokoj.ToString() == numroom_box.Text || pictureBox1.ImageLocation != room.zdjecie)
+                var room = (from c in dc.Pokojs where c.id_pokoj.ToString() == numroom_box.Text select new{c.zdjecie,c.id_pokoj, c.stan}).First();
+                if ((room.id_pokoj.ToString() == numroom_box.Text || pictureBox1.ImageLocation != room.zdjecie)&&!room.stan)
                 {
                     if(room.zdjecie!=null)
                     pictureBox1.Image = Image.FromFile(room.zdjecie);
@@ -125,6 +127,7 @@ namespace Final_Rezerwacja_Hotelowa
                     }
                 }catch
                 {
+                    Reserve.Enabled = false;
                     Tick_label.ForeColor = Color.Red;
                     Tick_label.Text = "X";
                     return false;
