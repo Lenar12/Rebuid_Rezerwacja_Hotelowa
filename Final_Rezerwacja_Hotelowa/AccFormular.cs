@@ -45,7 +45,7 @@ namespace Final_Rezerwacja_Hotelowa
             // pobiera dane z textboxów
             AData.Imie = Imie_box.Text;
             AData.Nazwisko = Nazwisko_box.Text;
-            //AData.Adres = Adres_box;
+            AData.Adres = Adres_Box.Text;
 
         }
       

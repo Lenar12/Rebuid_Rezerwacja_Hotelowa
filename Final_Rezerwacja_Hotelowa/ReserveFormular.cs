@@ -16,7 +16,7 @@ namespace Final_Rezerwacja_Hotelowa
         {
             public System.DateTime data_od;
             public System.DateTime data_do;
-            public string room_number;
+            public int room_number;
             public string client_login;
         };
         private Form_Data form_data=new Form_Data();
@@ -52,8 +52,8 @@ namespace Final_Rezerwacja_Hotelowa
             Rezerwacja rezerwacja=new Rezerwacja();
             Rezerwacja_Pokoj rezerwacja1 = new Rezerwacja_Pokoj();
             Pokoj room = new Pokoj();
-
-            rezerwacja.id_klienta = (from s in dc.Klients where s.login == Login_box.Text select new { s.id_klienta }).First().id_klienta;
+            GetData();
+            rezerwacja.id_klienta = (from s in dc.Klients where s.login == form_data.client_login select new { s.id_klienta }).First().id_klienta;
             rezerwacja.id_pracownika = user_id;
             //wyjatek przeprowadzany podczas rejestracji do pustej bazy
             try
@@ -65,35 +65,33 @@ namespace Final_Rezerwacja_Hotelowa
                 rezerwacja.id_rezerwacji = 1;
             }
             //pokoj update
-            room = dc.Pokojs.Single(c => c.id_pokoj.ToString() == numroom_box.Text);
+            room = dc.Pokojs.Single(c => c.id_pokoj == form_data.room_number);
             room.stan = true;
             room.rezerwacja_do = datefrom.Value;
             room.rezerwacja_od = dateto.Value;
             //rezerwacja-pokoj update
-            rezerwacja1.id_pokoju = 204;
-            rezerwacja1.id_rezerwacji = 1;
+            rezerwacja1.id_pokoju = room.id_pokoj;
+            rezerwacja1.id_rezerwacji = rezerwacja.id_rezerwacji;
             //akceptacja zmian
             dc.Rezerwacja_Pokojs.InsertOnSubmit(rezerwacja1);
             dc.Rezerwacjas.InsertOnSubmit(rezerwacja);
             dc.SubmitChanges();
             //update room grida
-            R_Grid.Update_All();
+            Sync();
         }
 
         public void GetData()
         {
+            //pobieranie danych z textboxów
             form_data.client_login = Login_box.Text;
             form_data.data_do = dateto.Value;
             form_data.data_od = datefrom.Value;
-            //form_data.room_number = 
-            //pobieranie danych z textboxów
-           
+            form_data.room_number =Convert.ToInt32(numroom_box.Text);
         }
 
         public bool CheckData()
         {
             //sprawdzenie czy dany użytkownik i pokój na którego chcemy zapisać rezerwację istnieje w systemie
-            
                 try
                 {
                 //jeżeli pokój posiada obraz to wyświetla jego podgląd
@@ -137,7 +135,7 @@ namespace Final_Rezerwacja_Hotelowa
 
         public void Sync()
         { // synchronizacja zmian z bazą danych
-
+            R_Grid.Update_All();
         }
 
         private void NewAcc_rbutton_CheckedChanged(object sender, EventArgs e)
@@ -156,13 +154,5 @@ namespace Final_Rezerwacja_Hotelowa
         {
             CheckData();
         }
-
-        private void Check_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
     }
 }
