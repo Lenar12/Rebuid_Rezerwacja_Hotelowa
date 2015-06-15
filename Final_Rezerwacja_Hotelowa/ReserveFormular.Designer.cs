@@ -47,8 +47,8 @@
             // 
             // Check
             // 
-            this.Check.Location = new System.Drawing.Point(458, 259);
-            this.Check.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Check.Location = new System.Drawing.Point(459, 242);
+            this.Check.Margin = new System.Windows.Forms.Padding(4);
             this.Check.Name = "Check";
             this.Check.Size = new System.Drawing.Size(112, 32);
             this.Check.TabIndex = 40;
@@ -58,8 +58,8 @@
             // 
             // MakeAcc
             // 
-            this.MakeAcc.Location = new System.Drawing.Point(27, 261);
-            this.MakeAcc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MakeAcc.Location = new System.Drawing.Point(28, 244);
+            this.MakeAcc.Margin = new System.Windows.Forms.Padding(4);
             this.MakeAcc.Name = "MakeAcc";
             this.MakeAcc.Size = new System.Drawing.Size(158, 29);
             this.MakeAcc.TabIndex = 39;
@@ -72,8 +72,8 @@
             this.NewAcc_rbutton.AutoSize = true;
             this.NewAcc_rbutton.CausesValidation = false;
             this.NewAcc_rbutton.Checked = true;
-            this.NewAcc_rbutton.Location = new System.Drawing.Point(27, 217);
-            this.NewAcc_rbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NewAcc_rbutton.Location = new System.Drawing.Point(28, 200);
+            this.NewAcc_rbutton.Margin = new System.Windows.Forms.Padding(4);
             this.NewAcc_rbutton.Name = "NewAcc_rbutton";
             this.NewAcc_rbutton.Size = new System.Drawing.Size(127, 22);
             this.NewAcc_rbutton.TabIndex = 38;
@@ -86,8 +86,8 @@
             // 
             this.ExistAcc_rbutton.AutoSize = true;
             this.ExistAcc_rbutton.CausesValidation = false;
-            this.ExistAcc_rbutton.Location = new System.Drawing.Point(285, 217);
-            this.ExistAcc_rbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ExistAcc_rbutton.Location = new System.Drawing.Point(286, 200);
+            this.ExistAcc_rbutton.Margin = new System.Windows.Forms.Padding(4);
             this.ExistAcc_rbutton.Name = "ExistAcc_rbutton";
             this.ExistAcc_rbutton.Size = new System.Drawing.Size(102, 22);
             this.ExistAcc_rbutton.TabIndex = 37;
@@ -97,8 +97,8 @@
             // 
             // Reserve
             // 
-            this.Reserve.Location = new System.Drawing.Point(392, 324);
-            this.Reserve.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Reserve.Location = new System.Drawing.Point(393, 307);
+            this.Reserve.Margin = new System.Windows.Forms.Padding(4);
             this.Reserve.Name = "Reserve";
             this.Reserve.Size = new System.Drawing.Size(135, 48);
             this.Reserve.TabIndex = 36;
@@ -108,8 +108,8 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(134, 324);
-            this.Cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Cancel.Location = new System.Drawing.Point(135, 307);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(4);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(135, 48);
             this.Cancel.TabIndex = 35;
@@ -120,7 +120,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(215, 269);
+            this.label7.Location = new System.Drawing.Point(216, 252);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 18);
@@ -130,7 +130,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 154);
+            this.label3.Location = new System.Drawing.Point(25, 137);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 18);
@@ -140,7 +140,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 105);
+            this.label2.Location = new System.Drawing.Point(25, 88);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 18);
@@ -149,8 +149,8 @@
             // 
             // Login_box
             // 
-            this.Login_box.Location = new System.Drawing.Point(285, 263);
-            this.Login_box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Login_box.Location = new System.Drawing.Point(286, 246);
+            this.Login_box.Margin = new System.Windows.Forms.Padding(4);
             this.Login_box.Name = "Login_box";
             this.Login_box.Size = new System.Drawing.Size(148, 24);
             this.Login_box.TabIndex = 31;
@@ -158,7 +158,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 44);
+            this.label1.Location = new System.Drawing.Point(25, 27);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 18);
@@ -167,31 +167,31 @@
             // 
             // numroom_box
             // 
-            this.numroom_box.Location = new System.Drawing.Point(153, 41);
-            this.numroom_box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numroom_box.Location = new System.Drawing.Point(154, 24);
+            this.numroom_box.Margin = new System.Windows.Forms.Padding(4);
             this.numroom_box.Name = "numroom_box";
             this.numroom_box.Size = new System.Drawing.Size(148, 24);
             this.numroom_box.TabIndex = 28;
             // 
             // datefrom
             // 
-            this.datefrom.Location = new System.Drawing.Point(153, 100);
-            this.datefrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.datefrom.Location = new System.Drawing.Point(154, 83);
+            this.datefrom.Margin = new System.Windows.Forms.Padding(4);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(195, 24);
             this.datefrom.TabIndex = 45;
             // 
             // dateto
             // 
-            this.dateto.Location = new System.Drawing.Point(153, 149);
-            this.dateto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateto.Location = new System.Drawing.Point(154, 132);
+            this.dateto.Margin = new System.Windows.Forms.Padding(4);
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(195, 24);
             this.dateto.TabIndex = 46;
             // 
             // Tick_label
             // 
-            this.Tick_label.Location = new System.Drawing.Point(578, 263);
+            this.Tick_label.Location = new System.Drawing.Point(579, 246);
             this.Tick_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Tick_label.Name = "Tick_label";
             this.Tick_label.Size = new System.Drawing.Size(46, 25);
@@ -218,7 +218,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numroom_box);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReserveFormular";
             this.Text = "ReservationPanel";
             this.ResumeLayout(false);

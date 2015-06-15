@@ -12,6 +12,18 @@ namespace Final_Rezerwacja_Hotelowa
 {
     public partial class AccFormular : Form
     {
+        DataClassesDataContext dc = new DataClassesDataContext();
+
+        public struct AccData
+        {
+            public string Imie;
+            public string Nazwisko;
+            public string Login;
+            public string Pesel;
+            public string Adres;
+        };
+        AccData AData;
+
         public AccFormular()
         {
             InitializeComponent();
@@ -31,15 +43,27 @@ namespace Final_Rezerwacja_Hotelowa
         public void GetData()
         {
             // pobiera dane z textboxów
+            AData.Imie = Imie_box.Text;
+            AData.Nazwisko = Nazwisko_box.Text;
+            AData.Login = Login_box.Text;
+            AData.Pesel = Pesel_box.Text;
+            AData.Adres = Adres_box.Text;
 
         }
-
+      
         public bool CheckData()
         {
+            GetData();
             // sprawdza czy użytkownik o podanym loginie już istnieje w systemie 
-
-            return true;
+            var user = from c in dc.Klients 
+                           where c.login ==  AData.Imie
+                           select c;
+            if (user.ToString() == "")
+                return true;
+            else
+                return false;
         }
+
         private void Cancel_button_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -50,8 +74,10 @@ namespace Final_Rezerwacja_Hotelowa
             // przycisk uruchamiający proces tworzenia konta 
             if (this.CheckData())
             {
-               
+                MessageBox.Show("Konto utworzono");
             }
+            else
+                MessageBox.Show("Już takie konto istnieje");
 
             this.Close();
         }
