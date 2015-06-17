@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Final_Rezerwacja_Hotelowa
 {
-    class AbstractFactory
+    class CreatorPanel
     {
         // wszystkie funkcję create...Panel tworzą pierw tworzą nowe Formy a potem przełączają na nie
         public void CreateAdminPanel()
@@ -20,7 +20,7 @@ namespace Final_Rezerwacja_Hotelowa
             next.Show();
         }
 
-        public void CreateServicePanel()
+        public void CreateCleaningPanel()
         { // tworzy panel sprzątaczki
 
         }
@@ -39,7 +39,7 @@ namespace Final_Rezerwacja_Hotelowa
             //        this.CreateAdminPanel();
             //        break;
             //    case "3":           //forma sprzątaczki
-            //       this.CreateServicePanel();
+            //       this.CreateCleaningPanel();
             //        break;
             //};
         }

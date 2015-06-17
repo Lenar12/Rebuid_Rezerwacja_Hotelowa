@@ -13,7 +13,7 @@ namespace Final_Rezerwacja_Hotelowa
    
     public partial class LoginPanel : Form
     {
-        AbstractFactory Factory = new AbstractFactory();
+        CreatorPanel Factory = new CreatorPanel();
 
         public LoginPanel()
         {

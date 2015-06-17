@@ -32,6 +32,25 @@ namespace Final_Rezerwacja_Hotelowa
         {
             // funkcja do tworzenia nowego konta
 
+            Klient client = new Klient();
+            // przycisk uruchamiający proces tworzenia konta 
+            if (this.CheckData())
+            {
+                client.login = AData.Login;
+                client.haslo = AData.Password;
+                client.id_klienta = (from c in dc.Klients orderby c.id_klienta descending select new { c.id_klienta }).First().id_klienta + 1;
+                client.imie = AData.Imie;
+                client.nazwisko = AData.Nazwisko;
+                client.adres_zamieszkania = AData.Adres;
+                dc.Klients.InsertOnSubmit(client);
+                dc.SubmitChanges();
+                Sync();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Już takie konto istnieje");
+
+            //this.Close();
         }
 
         public void Sync()
@@ -74,24 +93,7 @@ namespace Final_Rezerwacja_Hotelowa
 
         private void create_button_Click(object sender, EventArgs e)
         {
-            Klient client = new Klient();
-            // przycisk uruchamiający proces tworzenia konta 
-            if (this.CheckData())
-            {
-                client.login = AData.Login;
-                client.haslo = AData.Password;
-                client.id_klienta = (from c in dc.Klients orderby c.id_klienta descending select new { c.id_klienta }).First().id_klienta + 1;
-                client.imie = AData.Imie;
-                client.nazwisko = AData.Nazwisko;
-                client.adres_zamieszkania = AData.Adres;
-                dc.Klients.InsertOnSubmit(client);
-                dc.SubmitChanges();
-                Sync();
-            }
-            else
-                MessageBox.Show("Już takie konto istnieje");
-
-            //this.Close();
+            AddAcc();
         }
 
 

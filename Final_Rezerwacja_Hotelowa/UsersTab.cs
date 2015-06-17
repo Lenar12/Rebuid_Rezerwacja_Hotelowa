@@ -9,20 +9,6 @@ namespace Final_Rezerwacja_Hotelowa
     class UsersTab
     {
 
-        //private static UsersTab instance;
-        //private UsersTab() {}
-        //public static UsersTab Instance
-        //{
-        //    get
-        //    {
-        //        if (instance == null)
-        //        {
-        //            instance = new UsersTab();
-        //        }
-        //        return instance;
-        //    }
-        //}
-
         public void MakeAcc()
         {
             // utworzenie formularza tworzenia nowego konta

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace Final_Rezerwacja_Hotelowa
 {
     public partial class RoomManager : Form
@@ -34,10 +34,22 @@ namespace Final_Rezerwacja_Hotelowa
             }else
             {
                 label3.Text = "Zajęty";
-                label5.Text = query.rezerwacja_od.Value.Date.ToString().Substring(0,10);
-                label7.Text = query.rezerwacja_do.Value.Date.ToString().Substring(0,10);
+                label7.Text = query.rezerwacja_od.Value.Date.ToString().Substring(0,10);
+                label5.Text = query.rezerwacja_do.Value.Date.ToString().Substring(0,10);
             }
-            pictureBox1.Image = Image.FromFile(query.zdjecie);
+            try
+            {
+
+                pictureBox1.Image = Image.FromFile(query.zdjecie);
+            }
+            catch (FileNotFoundException)
+            {
+               // MessageBox.Show("Nie znaleziono zdjęcia");
+            }
+            catch (ArgumentNullException)
+            {
+                pictureBox1.Image = pictureBox1.InitialImage;
+            }
             richTextBox1.Text = query.wyposarzenie;
         }
 

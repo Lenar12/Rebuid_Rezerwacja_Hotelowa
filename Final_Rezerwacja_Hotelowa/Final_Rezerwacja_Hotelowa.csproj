@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractFactory.cs" />
+    <Compile Include="CreatorPanel.cs" />
     <Compile Include="AccFormular.cs">
       <SubType>Form</SubType>
     </Compile>

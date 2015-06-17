@@ -12,6 +12,7 @@ namespace Final_Rezerwacja_Hotelowa
 {
     public partial class UserEditor : Form
     {
+        //TODO
         public UserEditor()
         {
             InitializeComponent();

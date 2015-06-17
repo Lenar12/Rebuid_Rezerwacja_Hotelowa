@@ -8,20 +8,6 @@ namespace Final_Rezerwacja_Hotelowa
 {
     class RoomTab
     {
-        //private static RoomTab instance;
-        //private RoomTab() {}
-
-        //public static RoomTab Instance
-        //{
-        //    get
-        //    {
-        //        if (instance == null)
-        //        {
-        //            instance = new RoomTab();
-        //        }
-        //        return instance;
-        //    }
-        //}
 
         public void OpenReservePanel(int id)
         {
