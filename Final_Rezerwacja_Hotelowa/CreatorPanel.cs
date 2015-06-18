@@ -25,23 +25,23 @@ namespace Final_Rezerwacja_Hotelowa
 
         }
 
-        public void CheckAuthorization() //login
+        public void CheckAuthorization(int uprawnienia) //login
         {
-            CreateReceptionistPanel();
-            // sprawdza dla loginu użytkownika jego uprawnienia i uruchamia odpowiednie gui
+            //CreateReceptionistPanel();
+            //sprawdza dla loginu użytkownika jego uprawnienia i uruchamia odpowiednie gui
             
-            //switch ("uprawnienia")
-            //{
-            //    case "1":           //forma recepcjonisty
-            //        this.CreateReceptionistPanel();
-            //        break;
-            //    case "2":           //forma administratora
-            //        this.CreateAdminPanel();
-            //        break;
-            //    case "3":           //forma sprzątaczki
-            //       this.CreateCleaningPanel();
-            //        break;
-            //};
+            switch (uprawnienia)
+            {
+                case 1:           //forma recepcjonisty
+                    this.CreateReceptionistPanel();
+                    break;
+                case 2:           //forma administratora
+               //     this.CreateAdminPanel();
+                    break;
+                case 3:           //forma sprzątaczki
+                //   this.CreateCleaningPanel();
+                    break;
+            };
         }
 
 

@@ -16,7 +16,7 @@ namespace Final_Rezerwacja_Hotelowa
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReceptionistPanel());
+            Application.Run(new LoginPanel());
         }
     }
 }
